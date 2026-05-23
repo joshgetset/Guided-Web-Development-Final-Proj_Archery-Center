@@ -1,0 +1,17 @@
+services:
+  - type: web
+    name: archerycenter-web
+    env: docker
+    branch: main
+    plan: free
+    dockerfilePath: Dockerfile
+    envVars:
+      - key: APP_ENV
+        value: production
+      - key: APP_DEBUG
+        value: 'false'
+      - key: PORT
+        value: '10000'
+# NOTE: Add database and other secret env vars via Render dashboard or by
+# editing this file (but avoid committing credentials). Required envs: APP_KEY,
+# DB_HOST, DB_NAME, DB_USER, DB_PASSWORD, and MAIL settings.
