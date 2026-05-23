@@ -1,7 +1,7 @@
 # Multi-stage Dockerfile for deploying Laravel on Render
 
 # Stage 1: build frontend assets with Node
-FROM node:18 AS frontend
+FROM node:22 AS frontend
 WORKDIR /app
 COPY package*.json ./
 RUN npm install
