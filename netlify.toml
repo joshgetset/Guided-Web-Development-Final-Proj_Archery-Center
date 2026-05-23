@@ -6,7 +6,7 @@
   NODE_ENV = "production"
 
 [context.production.environment]
-  PHP_VERSION = "8.4"
+  PHP_VERSION = "8.3"
 
 [dev]
   command = "npm run dev"
