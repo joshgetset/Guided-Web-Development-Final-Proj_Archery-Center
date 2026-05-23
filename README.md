@@ -1,58 +1,45 @@
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
 
 <p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
+<img src="https://img.shields.io/badge/Coursera-Guided%20Project-blue" alt="Coursera Project">
+<img src="https://img.shields.io/badge/Environment-Laragon-cyan" alt="Laragon Environment">
+<img src="https://img.shields.io/badge/Framework-Laravel%2011.x-red" alt="Laravel Version">
+<img src="https://img.shields.io/badge/License-MIT-green" alt="License">
 </p>
 
-## About Laravel
+## About The Archery Booking System
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+This web application serves as the **Final Project** for the Coursera *Guided Website Development* course. The primary goal of this system is to facilitate a straightforward booking pipeline between aspiring archers and professional instructors.
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+The platform streamlines lane reservations and schedules lessons directly inside a simple, highly functional interface built entirely on top of the Laravel framework.
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+### Project Scope & Features
 
-## Learning Laravel
+- **Instructor Profiles:** Visitors can browse through profiles of certified archery instructors to learn about their background, expertise, and target styles.
+- **Unified Booking Management:** A singular booking workflow enabling users to reserve direct training slots with selected instructors. 
+- **Dynamic Class Rosters:** Tracks schedule details, assigned coaching instructors, and available open range sessions natively through the underlying database engine.
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+---
 
-In addition, [Laracasts](https://laracasts.com) contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+## Technical Specifications
 
-You can also watch bite-sized lessons with real-world projects on [Laravel Learn](https://laravel.com/learn), where you will be guided through building a Laravel application from scratch while learning PHP fundamentals.
+- **Backend Framework:** Laravel 11.x
+- **Local Environment Server:** Laragon (Apache / MySQL)
+- **Database Architecture:** Relational schema optimized using Eloquent models for managing raw booking states.
 
-## Agentic Development
+---
 
-Laravel's predictable structure and conventions make it ideal for AI coding agents like Claude Code, Cursor, and GitHub Copilot. Install [Laravel Boost](https://laravel.com/docs/ai) to supercharge your AI workflow:
+## Local Installation Setup
 
+Follow these exact steps to launch and test this project locally inside your **Laragon** installation:
+
+### Prerequisites
+1. Ensure you have **Laragon** downloaded and running.
+2. Ensure your Laragon environment is configured with **PHP >= 8.2** and **Composer**.
+
+### Deployment Steps
+1. **Clone the Repository:**
+   Open Laragon's terminal, navigate to your root directory (typically `C:\laragon\www\`), and clone this project:
 ```bash
-composer require laravel/boost --dev
-
-php artisan boost:install
-```
-
-Boost provides your agent 15+ tools and skills that help agents build Laravel applications while following best practices.
-
-## Contributing
-
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
-
-## Code of Conduct
-
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+   git clone [https://github.com/joshgetset/Guided-Web-Development-Final-Proj_Archery-Center.git](https://github.com/joshgetset/Guided-Web-Development-Final-Proj_Archery-Center.git)
+   cd Guided-Web-Development-Final-Proj_Archery-Center
