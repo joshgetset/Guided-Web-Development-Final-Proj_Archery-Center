@@ -2,8 +2,8 @@ FROM php:8.3-apache
 
 # Install system deps + PHP extensions Laravel needs
 RUN apt-get update && apt-get install -y \
-    git curl zip unzip libzip-dev libpng-dev libonig-dev libxml2-dev libcurl4-openssl-dev sqlite3 libsqlite3-dev \
-    && docker-php-ext-install pdo pdo_sqlite mbstring zip gd xml curl ctype
+    git curl zip unzip libzip-dev libpng-dev libonig-dev libxml2-dev libcurl4-openssl-dev libicu-dev sqlite3 libsqlite3-dev \
+    && docker-php-ext-install pdo pdo_sqlite mbstring zip gd xml curl ctype fileinfo tokenizer bcmath intl
 
 # Enable Apache mod_rewrite (needed for Laravel's pretty URLs)
 RUN a2enmod rewrite
