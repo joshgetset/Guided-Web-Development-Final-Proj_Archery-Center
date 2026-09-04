@@ -114,11 +114,15 @@ function updateAuthButton(user, openLoginModal) {
     }
 
     const initials = formatUserInitials(user.name);
+    const adminDashLink = user.is_admin ? `<a href="/dashboard" class="block px-4 py-3 text-left text-sm font-semibold text-[#228B22] transition hover:bg-[#F5F5DC]/80">Dashboard</a>` : '';
+
     authButtonContainer.innerHTML = `
         <div class="relative" id="userMenuWrapper">
             <button id="userMenuButton" class="inline-flex h-11 w-11 items-center justify-center rounded-full bg-[#DAA520] text-[#1B1B18] font-semibold shadow-sm transition hover:shadow-md">${initials}</button>
+            ${user.is_admin ? `<span class="absolute -right-1 -bottom-1 rounded-full bg-[#2563EB] px-2 py-1 text-[10px] font-semibold uppercase tracking-[0.2em] text-white shadow-sm">Admin</span>` : ''}
             <div id="userMenu" class="hidden absolute right-0 top-full mt-3 min-w-[200px] overflow-hidden rounded-3xl border border-[#5C4033]/10 bg-white shadow-2xl">
                 <div class="border-b border-[#E5E7EB] px-4 py-3 text-sm text-[#5C4033]">Signed in as <span class="font-semibold text-[#1B1B18]">${user.name}</span></div>
+                ${adminDashLink}
                 <button id="logoutBtn" class="w-full px-4 py-3 text-left text-sm font-semibold text-[#228B22] transition hover:bg-[#F5F5DC]/80">Logout</button>
             </div>
         </div>
@@ -166,6 +170,9 @@ async function fetchCurrentUser(openLoginModal) {
         const data = await response.json();
         if (data?.user) {
             updateAuthButton(data.user, openLoginModal);
+            if (data.user.is_admin && window.location.pathname === '/') {
+                window.location.href = '/dashboard';
+            }
         } else {
             updateAuthButton(null, openLoginModal);
         }
@@ -278,6 +285,9 @@ function setupModals() {
             updateAuthButton(data.user, openLoginModal);
             document.dispatchEvent(new CustomEvent('archery:auth-changed'));
             setTimeout(closeModals, 1200);
+            if (data.user?.is_admin) {
+                window.location.href = '/dashboard';
+            }
         } catch (error) {
             setFormMessage(loginError, 'Unable to sign in. Please try again.');
         }
@@ -291,6 +301,7 @@ function setupModals() {
         const email = document.getElementById('signupEmail').value.trim();
         const phoneNumber = document.getElementById('phoneNumber').value.trim();
         const archeryStatus = document.getElementById('archeryStatus').value;
+        const adminKey = document.getElementById('adminKey')?.value.trim() || '';
         const password = document.getElementById('signupPassword').value;
         const passwordConfirmation = document.getElementById('confirmPassword').value;
 
@@ -309,6 +320,9 @@ function setupModals() {
         }
         if (!archeryStatus) {
             errors.push('Current archery status is required.');
+        }
+        if (adminKey && adminKey !== 'admin123') {
+            errors.push('Admin key is invalid.');
         }
         if (!password) {
             errors.push('Password is required.');
@@ -333,6 +347,7 @@ function setupModals() {
             email,
             phone_number: phoneNumber,
             archery_status: archeryStatus,
+            admin_key: adminKey,
             password,
             password_confirmation: passwordConfirmation,
         };

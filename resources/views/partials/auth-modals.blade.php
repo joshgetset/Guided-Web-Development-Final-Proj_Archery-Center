@@ -117,6 +117,17 @@
                             </div>
 
                             <div class="form-group">
+                                <label for="adminKey" class="text-sm font-semibold text-[#1B1B18]">Admin Key (optional)</label>
+                                <div class="relative mt-2">
+                                    <span class="pointer-events-none absolute inset-y-0 left-4 flex items-center text-[#5C4033]/80">
+                                        <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 11c1.657 0 3-1.343 3-3V5a3 3 0 00-6 0v3c0 1.657 1.343 3 3 3zM5 13a7 7 0 0014 0v-1H5v1z" /></svg>
+                                    </span>
+                                    <input type="text" name="admin_key" id="adminKey" placeholder="Admin key for admin signup" class="w-full rounded-2xl border border-[#5C4033]/10 bg-[#F5F5DC]/50 pl-11 pr-4 py-3 text-sm transition placeholder:text-[#5C4033]/40 focus:border-[#228B22] focus:bg-white focus:outline-none" />
+                                </div>
+                                <p class="mt-2 text-xs text-[#5C4033]/80">Enter the admin key only when registering an admin account.</p>
+                            </div>
+
+                            <div class="form-group">
                                 <label for="signupPassword" class="text-sm font-semibold text-[#1B1B18]">Password</label>
                                 <div class="relative mt-2">
                                     <span class="pointer-events-none absolute inset-y-0 left-4 flex items-center text-[#5C4033]/80">

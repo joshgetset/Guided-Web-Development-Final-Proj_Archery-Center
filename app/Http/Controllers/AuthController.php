@@ -32,6 +32,7 @@ class AuthController extends Controller
             'user' => [
                 'name' => $user->name,
                 'initials' => $this->formatInitials($user),
+                'is_admin' => $user->is_admin,
             ],
         ]);
     }
@@ -45,6 +46,7 @@ class AuthController extends Controller
             'phone_number' => ['required', 'string', 'max:25'],
             'archery_status' => ['required', 'in:beginner,intermediate,advanced,professional'],
             'password' => ['required', 'string', 'confirmed', Password::min(8)->mixedCase()->numbers()->symbols()],
+            'admin_key' => ['nullable', 'string'],
         ], [
             'password.mixed_case' => 'Password must include both upper and lower case letters.',
             'password.numbers' => 'Password must include at least one number.',
@@ -58,6 +60,18 @@ class AuthController extends Controller
             ], 422);
         }
 
+        $isAdmin = false;
+        if ($request->filled('admin_key')) {
+            if ($request->input('admin_key') !== 'admin123') {
+                return response()->json([
+                    'message' => 'Invalid admin key.',
+                    'errors' => ['admin_key' => ['Invalid admin key.']],
+                ], 422);
+            }
+
+            $isAdmin = true;
+        }
+
         User::create([
             'first_name' => $request->input('first_name'),
             'last_name' => $request->input('last_name'),
@@ -66,6 +80,7 @@ class AuthController extends Controller
             'phone_number' => $request->input('phone_number'),
             'archery_status' => $request->input('archery_status'),
             'password' => $request->input('password'),
+            'is_admin' => $isAdmin,
         ]);
 
         return response()->json([
@@ -96,6 +111,7 @@ class AuthController extends Controller
             'user' => [
                 'name' => $user->name,
                 'initials' => $this->formatInitials($user),
+                'is_admin' => $user->is_admin,
             ],
         ]);
     }
