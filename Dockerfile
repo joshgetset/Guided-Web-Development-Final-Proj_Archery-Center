@@ -1,3 +1,28 @@
+# ==========================================
+# Stage 1: Build frontend assets
+# ==========================================
+FROM node:22 AS frontend
+
+WORKDIR /app
+
+# Copy package files first
+COPY package*.json ./
+
+# Install frontend dependencies
+RUN npm install
+
+# Copy frontend source files
+COPY resources ./resources
+COPY vite.config.js ./
+COPY public ./public
+
+# Build Vite assets
+RUN npm run build
+
+
+# ==========================================
+# Stage 2: Laravel + Apache
+# ==========================================
 FROM php:8.4-apache
 
 # Install system dependencies and PHP extensions
@@ -30,8 +55,11 @@ RUN a2enmod rewrite
 # Set working directory
 WORKDIR /var/www/html
 
-# Copy project files
+# Copy Laravel application
 COPY . .
+
+# Copy compiled Vite assets from frontend stage
+COPY --from=frontend /app/public/build ./public/build
 
 # Install Composer
 RUN curl -sS https://getcomposer.org/installer | php \
@@ -45,7 +73,7 @@ RUN composer install \
     --no-interaction \
     --no-scripts
 
-# Point Apache document root to Laravel's public folder
+# Configure Apache for Laravel
 RUN sed -i 's!/var/www/html!/var/www/html/public!g' \
     /etc/apache2/sites-available/000-default.conf
 
@@ -61,7 +89,7 @@ RUN chown -R www-data:www-data /var/www/html \
 
 EXPOSE 80
 
-# Discover packages, migrate, cache, then start Apache
+# Start Laravel
 CMD php artisan package:discover --ansi \
     && php artisan migrate --force \
     && php artisan config:cache \
