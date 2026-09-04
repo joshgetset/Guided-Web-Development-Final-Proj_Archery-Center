@@ -382,6 +382,23 @@ function setupModals() {
 
 window.addEventListener('DOMContentLoaded', () => {
     window.archeryOpenLoginModal = setupModals();
+
+    const adminSidebar = document.getElementById('adminSidebar');
+    const sidebarToggle = document.getElementById('sidebarToggle');
+    if (adminSidebar && sidebarToggle) {
+        sidebarToggle.addEventListener('click', () => {
+            const isOpen = document.body.classList.toggle('admin-sidebar-open');
+            sidebarToggle.setAttribute('aria-expanded', String(isOpen));
+        });
+
+        adminSidebar.querySelectorAll('a').forEach((link) => {
+            link.addEventListener('click', () => {
+                document.body.classList.remove('admin-sidebar-open');
+                sidebarToggle.setAttribute('aria-expanded', 'false');
+            });
+        });
+    }
+
     const carousels = document.querySelectorAll('.carousel-container');
 
     carousels.forEach((wrapper) => {
